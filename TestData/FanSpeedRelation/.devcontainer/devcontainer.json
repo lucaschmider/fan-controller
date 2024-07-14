@@ -1,0 +1,35 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers-community/templates/tree/main/src/jupyter-datascience-notebooks
+{
+  "name": "Jupyter Data Science Notebooks",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": "true",
+      "username": "jovyan",
+      "userUid": "1000",
+      "userGid": "1000",
+      "upgradePackages": "true"
+    }
+  },
+  "overrideCommand": false,
+  "forwardPorts": [8888],
+  "portsAttributes": {
+    "8888": {
+      "label": "Jupyter",
+      "requireLocalPort": true,
+      "onAutoForward": "ignore"
+    }
+  },
+
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "python.defaultInterpreterPath": "/opt/conda/bin/python"
+      },
+      "extensions": ["ms-python.python", "ms-toolsai.jupyter"]
+    }
+  }
+}
