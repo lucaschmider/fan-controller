@@ -1,5 +1,8 @@
 #define TACHOMETER_PIN 2
 #define CONTROL_PIN 11
+#define CONSTANT_DELAY 1000
+#define ITERATION_COUNT 10
+#define MEASUREMENTS_PER_DUTY_CYCLE 10
 
 volatile int speed = 0;
 volatile long lastTachometerTrigger = 0;
@@ -26,13 +29,15 @@ void setup() {
 void loop() {
   Serial.println("clear");
 
-  for(int dutyCycle = 0; dutyCycle <= 100; dutyCycle++) {
-    setDutyCycle(dutyCycle);
-    for(int iteration = 0; iteration < 10; iteration++) {
-      delay(1000);
-      Serial.println("dutyCycle:" + String(dutyCycle) + ",rpm:" + String(speed));
+  for(int iterationIndex = 0; interationIndex <= ITERATION_COUNT; iterationIndex++) {
+    for(int dutyCycle = 0; dutyCycle <= 100; dutyCycle++) {
+      setDutyCycle(dutyCycle);
+      for(int iteration = 0; iteration < MEASUREMENTS_PER_DUTY_CYCLE; iteration++) {
+        delay(1000);
+        Serial.println("dutyCycle:" + String(dutyCycle) + ",rpm:" + String(speed) + ",iterationIndex:" + String(iterationIndex) + ",measurementIndex:" + String(iteration));
+      }
     }
-  }
+  }  
   
   while(true){
     Serial.println("done");

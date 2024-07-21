@@ -17,7 +17,7 @@ if (is_docker):
     exit(-1)
 
 # Begin data collection
-dataPattern = Regex(rb"dutyCycle:(\d+),rpm:(\d+)\s*")
+dataPattern = Regex(rb"dutyCycle:(\d+),rpm:(\d+),iterationIndex:(\d+),measurementIndex:(\d+)\s*")
 
 serialBus = Serial(serialBusName, baudRate)
 print("Serial bus opened. Sending the start signal");
@@ -42,14 +42,17 @@ while True:
     
     dutyCycle = int(matches.group(1))
     rpm = int(matches.group(2))
-    data.append((dutyCycle, rpm))
+    iterationIndex = int(matches.group(3))
+    measurementIndex = int(matches.group(4))
 
-    print(f"dutyCycle: {dutyCycle}\trpm: {rpm}")
+    data.append((dutyCycle, rpm, iterationIndex, measurementIndex))
+
+    print(f"dutyCycle: {dutyCycle}\trpm: {rpm}\titerationIndex: {iterationIndex}\tmeasurementIndex: {measurementIndex}")
 serialBus.close()
 
 print(f"Measurement is done. {len(data)} records have been collected.")
 
-data.insert(0, ("dutyCycle", "rpm"))
+data.insert(0, ("dutyCycle", "rpm", "iterationIndex", "measurementIndex"))
 
 fileName = "measurement-" + datetime.now(UTC).strftime("%Y-%m-%d") + ".csv"
 with open(path.join(exportDestination, fileName), "w") as fileObject:
