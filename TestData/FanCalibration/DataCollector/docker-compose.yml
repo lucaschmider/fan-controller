@@ -1,0 +1,15 @@
+﻿services:
+  datacollector:
+    image: datacollector
+    build:
+      context: .
+      dockerfile: DataCollector/Dockerfile
+  db:
+    image: postgres
+    restart: always
+    shm_size: 128mb
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres

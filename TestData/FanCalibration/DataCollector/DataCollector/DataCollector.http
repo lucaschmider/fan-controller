@@ -1,0 +1,6 @@
+@DataCollector_HostAddress = http://localhost:5177
+
+GET {{DataCollector_HostAddress}}/api/Calibration/Fans/
+Accept: application/json
+
+###
