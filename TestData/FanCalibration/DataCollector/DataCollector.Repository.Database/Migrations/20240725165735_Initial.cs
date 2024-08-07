@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace DataCollector.Repository.Migrations
+namespace DataCollector.Repository.Database.Migrations
 {
     /// <inheritdoc />
     public partial class Initial : Migration

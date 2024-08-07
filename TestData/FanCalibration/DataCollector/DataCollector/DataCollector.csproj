@@ -27,7 +27,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\DataCollector.Repository\DataCollector.Repository.csproj" />
+      <ProjectReference Include="..\DataCollector.Repository.Database\DataCollector.Repository.Database.csproj" />
+      <ProjectReference Include="..\DataCollector.Repository.Serial\DataCollector.Repository.Serial.csproj" />
     </ItemGroup>
 
 </Project>

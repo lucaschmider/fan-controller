@@ -2,7 +2,7 @@ using DataCollector.Repository.Contracts.Calibration;
 using DataCollector.Repository.Contracts.Calibration.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace DataCollector.Repository.Calibration;
+namespace DataCollector.Repository.Database.Calibration;
 
 /// <summary>
 ///     Provides read and write functionality by leveraging a postgres database

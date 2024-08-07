@@ -1,4 +1,5 @@
-using DataCollector.Repository;
+using DataCollector.Repository.Database;
+using DataCollector.Repository.Serial;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,7 +8,12 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 
 var defaultConnectionString = builder.Configuration.GetConnectionString("DefaultConnection")!;
-builder.Services.AddRepository(defaultConnectionString);
+builder.Services.AddDatabase(defaultConnectionString);
+
+var serialModuleConfiguration = builder.Configuration
+    .GetSection("Serial")
+    .Get<SerialModuleConfiguration>()!;
+builder.Services.AddSerial(serialModuleConfiguration);
 
 var app = builder.Build();
 
