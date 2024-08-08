@@ -1,3 +1,4 @@
+using DataCollector.Business;
 using DataCollector.Repository.Database;
 using DataCollector.Repository.Serial;
 
@@ -14,6 +15,12 @@ var serialModuleConfiguration = builder.Configuration
     .GetSection("Serial")
     .Get<SerialModuleConfiguration>()!;
 builder.Services.AddSerial(serialModuleConfiguration);
+
+var businessModuleConfiguration = builder.Configuration
+    .GetSection("Business")
+    .Get<BusinessModuleConfiguration>()!;
+builder.Services.AddSerial(serialModuleConfiguration);
+builder.Services.AddBusiness(businessModuleConfiguration);
 
 var app = builder.Build();
 

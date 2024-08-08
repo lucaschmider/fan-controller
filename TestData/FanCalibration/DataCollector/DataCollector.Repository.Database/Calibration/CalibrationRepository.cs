@@ -1,6 +1,7 @@
 using DataCollector.Repository.Contracts.Calibration;
 using DataCollector.Repository.Contracts.Calibration.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace DataCollector.Repository.Database.Calibration;
 
@@ -18,6 +19,12 @@ internal class CalibrationRepository(CalibrationContext context) : ICalibrationR
     public async Task RegisterFanAsync(FanEntity fan)
     {
         context.Fans.Add(fan);
+        await context.SaveChangesAsync().ConfigureAwait(false);
+    }
+
+    public async Task AddMeasurementsAsync(IEnumerable<MeasurementEntity> entities)
+    {
+        context.Measurements.AddRange(entities);
         await context.SaveChangesAsync().ConfigureAwait(false);
     }
 }

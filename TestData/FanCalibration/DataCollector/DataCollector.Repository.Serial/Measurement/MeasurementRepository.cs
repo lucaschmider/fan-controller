@@ -79,7 +79,7 @@ internal class MeasurementRepository(SerialModuleConfiguration configuration, IL
                             }
                             else
                             {
-                                var measurement = new HardwareMeasurement(DateTime.Now, dutyCycle, fanSpeed);
+                                var measurement = new HardwareMeasurement(DateTime.UtcNow, dutyCycle, fanSpeed);
                                 foreach (var listener in _listeners.Values)
                                 {
                                     listener.Invoke(measurement);

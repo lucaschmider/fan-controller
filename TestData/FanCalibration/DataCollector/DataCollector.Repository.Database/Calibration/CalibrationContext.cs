@@ -1,4 +1,3 @@
-using DataCollector.Repository.Contracts.Calibration;
 using DataCollector.Repository.Contracts.Calibration.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,4 +9,9 @@ internal class CalibrationContext(DbContextOptions<CalibrationContext> options) 
     ///     The fans that have been registered
     /// </summary>
     public DbSet<FanEntity> Fans { get; set; }
+
+    /// <summary>
+    ///     The measurements that have been recorded
+    /// </summary>
+    public DbSet<MeasurementEntity> Measurements { get; set; }
 }

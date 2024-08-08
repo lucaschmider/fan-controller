@@ -26,4 +26,11 @@ public interface ICalibrationRepository
     /// <param name="fan"></param>
     /// <returns></returns>
     Task RegisterFanAsync(FanEntity fan);
+
+    /// <summary>
+    ///     Adds multiple measurements to the database
+    /// </summary>
+    /// <param name="entities"></param>
+    /// <returns></returns>
+    Task AddMeasurementsAsync(IEnumerable<MeasurementEntity> entities);
 }
