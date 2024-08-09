@@ -18,4 +18,11 @@ public static class DatabaseModule
             })
             .AddScoped<ICalibrationRepository, CalibrationRepository>();
     }
+
+    public static void ApplyMigrations(this IServiceProvider services)
+    {
+        using var scope = services.CreateScope();
+        var db = scope.ServiceProvider.GetRequiredService<CalibrationContext>();
+        db.Database.Migrate();
+    }
 }

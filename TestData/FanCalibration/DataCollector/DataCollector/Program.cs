@@ -30,6 +30,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.Services.ApplyMigrations();
 app.UseHttpsRedirection();
 app.MapControllers();
 
