@@ -16,10 +16,10 @@ jobs:
     - uses: actions/checkout@v4
     - name: Build the Docker image for DataCollector
       working-directory: TestData/FanCalibration/DataCollector
-      run: docker build -t data-collector:$(date +%s) -f DataCollector/Dockerfile --platform linux/amd64 .
+      run: docker build -t data-collector:latest -f DataCollector/Dockerfile --platform linux/amd64 .
     - name: Add remote tag
       working-directory: TestData/FanCalibration/DataCollector
-      run: docker tag data-collector:$(date +%s) ghcr.io/lucaschmider/data-collector:$(date +%s)
+      run: docker tag data-collector:latest ghcr.io/lucaschmider/data-collector:latest
     - name: Push image to GitHub registry
       working-directory: TestData/FanCalibration/DataCollector
       run: docker push ghcr.io/lucaschmider/data-collector:latest
